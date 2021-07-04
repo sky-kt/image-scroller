@@ -35,6 +35,16 @@ body {
     height: 600px;
     background-color: #dfdfdf;
     width: 2000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#focusedImage {
+    height: 80%;
+    width: 600px;
+    background-color: #cfcfcf;
+
 }
 
 #leftArrow {
