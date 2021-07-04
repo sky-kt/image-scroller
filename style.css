@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&display=swap);
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0 0 0 0;
+}
+
+body {
+    margin: 0 0 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+#title {
+    position: absolute;
+    text-align: center;
+    top: 50px;
+    width: 100%;
+    font-family: 'Overpass Mono', monospace;
+}
+
+#content {
+    margin: 0 0 0 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /*centers items on the line (the x-axis by default)*/
+    align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+#slideContainer {
+    height: 600px;
+    background-color: #dfdfdf;
+    width: 2000px;
+}
+
+#leftArrow {
+    position: absolute;
+    left: 10px;
+    font-size: 30px;
+}
+
+#leftArrow:hover {
+    cursor: pointer;
+}
+
+#rightArrow {
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+}
+
+#rightArrow:hover {
+    cursor: pointer;
+}
