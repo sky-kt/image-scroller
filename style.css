@@ -79,7 +79,7 @@ LEAVING
 
 @keyframes leaveLeft {
     0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
+    100% { transform: translateX(-130%); }
 }
 
 .leavingRight {
@@ -88,13 +88,26 @@ LEAVING
 
 @keyframes leaveRight{
     0% { transform: translateX(0%); }
-    100% { transform: translateX(100%); }
+    100% { transform: translateX(130%); }
 }
 
+/********************
+END!!!!!!!!!!!!!!!!!
+********************/
+
 #leftArrow {
+    width: 50px;
+    height: 50px;
     position: absolute;
     left: 10px;
     font-size: 30px;
+    z-index: 5 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border-radius: 30px;
+    color: white;
 }
 
 #leftArrow:hover {
@@ -102,9 +115,18 @@ LEAVING
 }
 
 #rightArrow {
+    width: 50px;
+    height: 50px;
     position: absolute;
     right: 10px;
     font-size: 30px;
+    z-index: 5 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border-radius: 30px;
+    color: white;
 }
 
 #rightArrow:hover {

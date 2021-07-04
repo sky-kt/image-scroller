@@ -5,9 +5,14 @@ const imageArray = ['fsociety', 'forest', 'windows11', 'japan']
 
 let imageIndex = 0
 
-const removeImage = () => {
-  const imageToRemove = slideContainer.firstElementChild
-  slideContainer.removeChild(imageToRemove)
+const removeImage = (direction) => {
+  const imageToRemove = slideContainer.lastElementChild
+  if (direction === 'left') {
+    imageToRemove.classList.add('leavingLeft')
+  } else imageToRemove.classList.add('leavingRight')
+  setInterval(() => {
+    slideContainer.removeChild(imageToRemove)
+  }, 2100)
 }
 
 const loadImage = (idx, direction) => {
@@ -40,8 +45,8 @@ const loadImage = (idx, direction) => {
   imageDOM.style.backgroundImage = `url(${imageURL})`
 
   if (direction === 'right') {
-    imageDOM.classList.add('image', 'enteringRight')
-  } else imageDOM.classList.add('image', 'enteringLeft')
+    imageDOM.classList.add('image', 'enteringLeft')
+  } else imageDOM.classList.add('image', 'enteringRight')
 
   slideContainer.appendChild(imageDOM)
 }
@@ -53,7 +58,7 @@ leftArrowButton.addEventListener('click', () => {
     imageIndex = imageArray.length - 1
   } else imageIndex--
   console.log(imageIndex)
-  removeImage()
+  removeImage('left')
   loadImage(imageIndex, 'left')
 })
 
@@ -62,6 +67,6 @@ rightArrowButton.addEventListener('click', () => {
     imageIndex = 0
   } else imageIndex++
   console.log(imageIndex)
-  removeImage()
+  removeImage('right')
   loadImage(imageIndex, 'right')
 })
