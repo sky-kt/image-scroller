@@ -40,11 +40,55 @@ body {
     align-items: center;
 }
 
-#focusedImage {
-    height: 80%;
+.image {
+    height: 50%;
     width: 600px;
     background-color: #cfcfcf;
+}
 
+/********************
+ENTERING
+********************/
+.enteringLeft {
+    position: absolute;
+    animation: enterLeft 2s forwards;
+}
+
+@keyframes enterLeft {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+}
+
+.enteringRight {
+    position: absolute;
+    animation: enterRight 2s forwards;
+}
+
+@keyframes enterRight{
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+}
+
+/********************
+LEAVING
+********************/
+.leavingLeft {
+    position: absolute;
+    animation: leaveLeft 2s forwards;
+}
+
+@keyframes leaveLeft {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+.leavingRight {
+    animation: leaveRight 2s forwards;
+}
+
+@keyframes leaveRight{
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(100%); }
 }
 
 #leftArrow {

@@ -1,15 +1,21 @@
 const leftArrowButton = document.getElementById('leftArrow')
 const rightArrowButton = document.getElementById('rightArrow')
-const focusedImage = document.getElementById('focusedImage')
+const slideContainer = document.getElementById('slideContainer')
 const imageArray = ['fsociety', 'forest', 'windows11', 'japan']
 
 let imageIndex = 0
 
-const loadImage = (idx) => {
-  const desiredImage = imageArray[idx]
+const removeImage = () => {
+  const imageToRemove = slideContainer.firstElementChild
+  slideContainer.removeChild(imageToRemove)
+}
+
+const loadImage = (idx, direction) => {
+  const imgName = imageArray[idx]
+  const imageDOM = document.createElement('div')
   let imageURL
 
-  switch (desiredImage) {
+  switch (imgName) {
     case 'fsociety':
       console.log('fsociety')
       imageURL = './images/fsociety.jpg'
@@ -30,7 +36,14 @@ const loadImage = (idx) => {
       alert(`Image at index ${idx} does not exist`)
       break
   }
-  focusedImage.style.backgroundImage = `url(${imageURL})`
+
+  imageDOM.style.backgroundImage = `url(${imageURL})`
+
+  if (direction === 'right') {
+    imageDOM.classList.add('image', 'enteringRight')
+  } else imageDOM.classList.add('image', 'enteringLeft')
+
+  slideContainer.appendChild(imageDOM)
 }
 
 loadImage(0)
@@ -40,7 +53,8 @@ leftArrowButton.addEventListener('click', () => {
     imageIndex = imageArray.length - 1
   } else imageIndex--
   console.log(imageIndex)
-  loadImage(imageIndex)
+  removeImage()
+  loadImage(imageIndex, 'left')
 })
 
 rightArrowButton.addEventListener('click', () => {
@@ -48,5 +62,6 @@ rightArrowButton.addEventListener('click', () => {
     imageIndex = 0
   } else imageIndex++
   console.log(imageIndex)
-  loadImage(imageIndex)
+  removeImage()
+  loadImage(imageIndex, 'right')
 })
