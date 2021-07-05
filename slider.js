@@ -1,16 +1,43 @@
 const leftArrowButton = document.getElementById('leftArrow')
+const statusContainer = document.getElementById('statusContainer')
 const rightArrowButton = document.getElementById('rightArrow')
 const slideContainer = document.getElementById('slideContainer')
 const imageArray = ['fsociety', 'forest', 'windows11', 'japan']
 
 let imageIndex = 0
 
+for (const image in imageArray) {
+  const status = document.createElement('div')
+  status.classList.add('status')
+  const statusID = `status_${image}`
+  status.setAttribute('id', statusID)
+  const statusText = document.createTextNode(1 + parseInt(image))
+  status.appendChild(statusText)
+  status.addEventListener('click', () => {
+    alert(image)
+  })
+  statusContainer.appendChild(status)
+}
+
+const updateStatus = (idx) => {
+  const allStatuses = Array.from(statusContainer.children)
+  const statusToUpdate = allStatuses[idx]
+  for (const status in allStatuses) {
+    if (allStatuses[status] !== statusToUpdate || allStatuses[status].classList.contains('darkStatus')) {
+      allStatuses[status].classList.remove('darkStatus')
+    } else {
+      allStatuses[status].classList.add('darkStatus')
+    }
+  }
+}
+
 const removeImage = (direction) => {
-  const imageToRemove = slideContainer.lastElementChild
+  const imageToRemove = slideContainer.lastChild
   if (direction === 'left') {
     imageToRemove.classList.add('leavingRight')
   } else imageToRemove.classList.add('leavingLeft')
-  setInterval(() => {
+  setTimeout(() => {
+    console.log(slideContainer.childNodes)
     slideContainer.removeChild(imageToRemove)
   }, 2100)
 }
@@ -60,6 +87,7 @@ leftArrowButton.addEventListener('click', () => {
   console.log(imageIndex)
   removeImage('left')
   loadImage(imageIndex, 'left')
+  updateStatus(imageIndex)
 })
 
 rightArrowButton.addEventListener('click', () => {
@@ -69,4 +97,5 @@ rightArrowButton.addEventListener('click', () => {
   console.log(imageIndex)
   removeImage('right')
   loadImage(imageIndex, 'right')
+  updateStatus(imageIndex)
 })

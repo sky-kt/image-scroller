@@ -41,8 +41,8 @@ body {
 }
 
 .image {
-    height: 50%;
-    width: 600px;
+    height: 500px;
+    width: 800px;
     background-color: #cfcfcf;
 }
 
@@ -55,7 +55,7 @@ ENTERING
 }
 
 @keyframes enterLeft {
-    0% { transform: translateX(-100%); }
+    0% { transform: translateX(-220%); }
     100% { transform: translateX(0%); }
 }
 
@@ -65,7 +65,7 @@ ENTERING
 }
 
 @keyframes enterRight{
-    0% { transform: translateX(100%); }
+    0% { transform: translateX(220%); }
     100% { transform: translateX(0%); }
 }
 
@@ -79,7 +79,7 @@ LEAVING
 
 @keyframes leaveLeft {
     0% { transform: translateX(0%); }
-    100% { transform: translateX(-130%); }
+    100% { transform: translateX(-220%); }
 }
 
 .leavingRight {
@@ -88,7 +88,7 @@ LEAVING
 
 @keyframes leaveRight{
     0% { transform: translateX(0%); }
-    100% { transform: translateX(130%); }
+    100% { transform: translateX(220%); }
 }
 
 /********************
@@ -131,4 +131,35 @@ END!!!!!!!!!!!!!!!!!
 
 #rightArrow:hover {
     cursor: pointer;
+}
+
+#statusContainer {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    background-color: #dfdfdf;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.status {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bfbfbf;
+    font-family: 'Overpass Mono', monospace;
+    border-radius: 5px;
+}
+
+.status:hover {
+    cursor: pointer;
+}
+
+.darkStatus {
+    background-color: black;
 }
