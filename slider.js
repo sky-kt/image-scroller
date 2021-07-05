@@ -8,8 +8,8 @@ let imageIndex = 0
 const removeImage = (direction) => {
   const imageToRemove = slideContainer.lastElementChild
   if (direction === 'left') {
-    imageToRemove.classList.add('leavingLeft')
-  } else imageToRemove.classList.add('leavingRight')
+    imageToRemove.classList.add('leavingRight')
+  } else imageToRemove.classList.add('leavingLeft')
   setInterval(() => {
     slideContainer.removeChild(imageToRemove)
   }, 2100)
@@ -45,8 +45,8 @@ const loadImage = (idx, direction) => {
   imageDOM.style.backgroundImage = `url(${imageURL})`
 
   if (direction === 'right') {
-    imageDOM.classList.add('image', 'enteringLeft')
-  } else imageDOM.classList.add('image', 'enteringRight')
+    imageDOM.classList.add('image', 'enteringRight')
+  } else imageDOM.classList.add('image', 'enteringLeft')
 
   slideContainer.appendChild(imageDOM)
 }
