@@ -161,5 +161,18 @@ END!!!!!!!!!!!!!!!!!
 }
 
 .darkStatus {
+    animation: turnDark 1s forwards;
     background-color: black;
+    color: white;
+}
+
+@keyframes turnDark {
+    0% {
+        background-color: #bfbfbf;
+        color: black;
+    }
+    100% {
+        background-color: black;
+        color: white;
+    }
 }
