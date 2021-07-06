@@ -3,7 +3,9 @@ const rightArrowButton = document.getElementById('rightArrow')
 const slideContainer = document.getElementById('slideContainer')
 const statusContainer = document.getElementById('statusContainer')
 const imageArray = ['fsociety', 'forest', 'windows11', 'japan']
-let imageIndex = 0;
+
+let imageIndex = 0
+let canChangeImage = true;
 
 (function makeStatuses () {
   for (const image in imageArray) {
@@ -15,20 +17,6 @@ let imageIndex = 0;
     status.appendChild(statusText)
     statusContainer.appendChild(status)
   }
-})();
-
-(function activateStatuses () {
-  const statusArray = Array.from(document.getElementById('statusContainer').children)
-  for (const status in statusArray) {
-    const statusNumber = statusArray.indexOf(statusArray[status])
-    statusArray[status].addEventListener('click', () => {
-      // alert(statusNumber)
-      imageIndex = statusNumber
-      removeImage('right')
-      loadImage('right')
-    })
-  }
-  console.log(statusArray)
 })()
 
 const updateStatus = () => {
@@ -43,6 +31,7 @@ const updateStatus = () => {
     }
   }
 }
+updateStatus()
 
 const removeImage = (direction) => {
   const imageToRemove = slideContainer.lastChild
@@ -50,7 +39,6 @@ const removeImage = (direction) => {
     imageToRemove.classList.add('leavingRight')
   } else imageToRemove.classList.add('leavingLeft')
   setTimeout(() => {
-    console.log(slideContainer.childNodes)
     slideContainer.removeChild(imageToRemove)
   }, 2100)
 }
@@ -64,19 +52,15 @@ const loadImage = (direction) => {
 
   switch (imgName) {
     case 'fsociety':
-      console.log('fsociety')
       imageURL = './images/fsociety.jpg'
       break
     case 'forest':
-      console.log('forest')
       imageURL = './images/forest.jpeg'
       break
     case 'windows11':
-      console.log('windows11')
       imageURL = './images/windows11.jpg'
       break
     case 'japan':
-      console.log('japan')
       imageURL = './images/samurai.png'
       break
     default:
@@ -92,26 +76,54 @@ const loadImage = (direction) => {
 
   slideContainer.appendChild(imageDOM)
 }
-
-updateStatus()
 loadImage('right')
 
+const moveImageLeft = () => {
+  if (canChangeImage) {
+    canChangeImage = false
+    if ((imageIndex - 1) < 0) {
+      imageIndex = imageArray.length - 1
+    } else imageIndex--
+    removeImage('left')
+    loadImage('left')
+    updateStatus()
+    setTimeout(() => { canChangeImage = true }, 1500)
+  }
+}
+
+const moveImageRight = () => {
+  if (canChangeImage) {
+    canChangeImage = false
+    if ((imageIndex + 1) > imageArray.length - 1) {
+      imageIndex = 0
+    } else imageIndex++
+    removeImage('right')
+    loadImage('right')
+    updateStatus()
+    setTimeout(() => { canChangeImage = true }, 1500)
+  }
+}
+
 leftArrowButton.addEventListener('click', () => {
-  if ((imageIndex - 1) < 0) {
-    imageIndex = imageArray.length - 1
-  } else imageIndex--
-  console.log(imageIndex)
-  removeImage('left')
-  loadImage('left')
-  updateStatus()
+  moveImageLeft()
 })
 
 rightArrowButton.addEventListener('click', () => {
-  if ((imageIndex + 1) > imageArray.length - 1) {
-    imageIndex = 0
-  } else imageIndex++
-  console.log(imageIndex)
-  removeImage('right')
-  loadImage('right')
-  updateStatus()
-})
+  moveImageRight()
+});
+
+(function activateStatuses () {
+  const statusArray = Array.from(document.getElementById('statusContainer').children)
+  for (const status in statusArray) {
+    const statusNumber = statusArray.indexOf(statusArray[status])
+    statusArray[status].addEventListener('click', () => {
+      while (true) {
+        if (imageIndex < statusNumber) {
+          moveImageRight()
+        } else if (imageIndex > statusNumber) {
+          moveImageLeft()
+        } else break
+      }
+    })
+  }
+})()
