@@ -117,13 +117,16 @@ rightArrowButton.addEventListener('click', () => {
   for (const status in statusArray) {
     const statusNumber = statusArray.indexOf(statusArray[status])
     statusArray[status].addEventListener('click', () => {
-      while (true) {
+      const checkDifference = () => {
         if (imageIndex < statusNumber) {
           moveImageRight()
+          setTimeout(() => { checkDifference() }, 1500)
         } else if (imageIndex > statusNumber) {
           moveImageLeft()
-        } else break
+          setTimeout(() => { checkDifference() }, 1500)
+        } else console.log('difference now equal')
       }
+      checkDifference()
     })
   }
 })()
